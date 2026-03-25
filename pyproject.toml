@@ -1,0 +1,15 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+#
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
+[project]
+name = "qinco"
+version = "0.1.0"
+
+[tool.setuptools]
+py-modules = ["qinco"]
+
+[build-system]
+requires = ["setuptools"]

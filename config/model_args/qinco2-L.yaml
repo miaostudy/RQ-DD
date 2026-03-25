@@ -1,0 +1,16 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+#
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
+# @package _global_
+L: 16
+de: 384
+dh: 384
+
+A: 16
+B: 32
+M: 8
+K: 256
+ivf_K: 1048576

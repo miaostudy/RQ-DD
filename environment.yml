@@ -1,0 +1,17 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+#
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
+name: qinco2
+channels:
+  - pytorch
+  - nvidia
+  - defaults
+dependencies:
+  - python=3.11
+  - cudatoolkit=11.7
+  - pip
+  - pip:
+    - -r requirements.txt
