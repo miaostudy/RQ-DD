@@ -12,5 +12,5 @@ torcheval
 einops
 faiss-cpu
 tensorboard
-
+diffusers
 --editable .

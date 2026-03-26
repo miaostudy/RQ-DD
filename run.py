@@ -30,14 +30,15 @@ EXPERIMENTS = {
     "search": SearchTask,
 }
 
-
+# hydra的包装器，会在运行main之前自动解析配置和命令行中的参数，并以cfg: DictConfig传入main
 @hydra.main(version_base=None, config_path="config", config_name="qinco_cfg")
 def main(cfg: DictConfig):
+    print(cfg)
     if cfg.task is None:
         raise ValueError(
             "Please specify a task (train, eval, etc.) using the 'train=<...>' argument"
         )
-    expe = EXPERIMENTS[cfg.task](cfg)
+    expe = EXPERIMENTS[cfg.task](cfg) # 任务初始化
 
     expe.accelerator.print(f"====================== RUNNING TASK {cfg.task}")
     expe.run()

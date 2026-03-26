@@ -80,7 +80,7 @@ def build_scheduler(cfg, optimizer):
 
 
 ####################################################################
-# QINCo evaluation
+# QINCo evaluationd
 ####################################################################
 
 
@@ -92,15 +92,15 @@ def compute_MSE(accelerator: QAccelerator, cfg, melog, model, val_dataset):
     melog.start_eval(val_dataset)
     max_loader_size = accelerator.gather(
         torch.tensor([len(val_dataset)]).to(accelerator.device)
-    ).max()
+    ).max() # 收集所有进程的 val_dataset 长度，并取最大值
     max_loader_size = int(max_loader_size.detach().cpu())
 
     # If task is eval, do a few batches to warm-start evaluation (allows jit to do compilation, for more accurate timers)
     if "eval" in cfg.task:
         for i_batch, batch in enumerate(val_dataset):
-            encoded_data = model(batch, step="encode")
+            encoded_data = model(batch, step="encode") # 编码 （M， bs）
 
-            decoded = model(encoded_data, step="decode")
+            decoded = model(encoded_data, step="decode") # 解码 （bs, d), （1024， 128）
             if i_batch >= 10:
                 break
         _ = decoded[-1][-1].item()  # Forces CUDA synchronisation
@@ -119,7 +119,7 @@ def compute_MSE(accelerator: QAccelerator, cfg, melog, model, val_dataset):
                 )  # Forces to complete computation before leaving the timer
 
         with t_decode:
-            xhat = model(encoded_data, step="decode")
+            xhat = model(encoded_data, step="decode") # (B, D)
             _ = float(
                 xhat.reshape(-1)[-1].cpu()
             )  # Forces to complete computation before leaving the timer
@@ -167,7 +167,7 @@ def step_scheduler(
             assert MSE_val is not None
             scheduler.step(MSE_val)
 
-
+# loss 聚合
 def aggregate_losses(cfg, losses):
     if isinstance(losses, dict):
         losses = torch.sum(
@@ -230,7 +230,7 @@ def train_qinco(accelerator, cfg, train_dataset, val_dataset, model):
         train_dataset,
         scheduler,
     )
-
+    # 评估
     MSE_val = compute_MSE(accelerator, cfg, melog, model, val_dataset)
     melog.end_standalone_eval()
     if "eval" in cfg.task:
@@ -241,7 +241,7 @@ def train_qinco(accelerator, cfg, train_dataset, val_dataset, model):
         step_scheduler(cfg, scheduler, cfg._cur_epoch, MSE_val=MSE_val)
         train_one_epoch_qinco(
             cfg, accelerator, model, train_dataset, optimizer, scheduler, melog
-        )
+        ) # !
         MSE_val = compute_MSE(accelerator, cfg, melog, model, val_dataset)
         melog.end_epoch(model, MSE_val)
 
@@ -255,7 +255,7 @@ def train_qinco(accelerator, cfg, train_dataset, val_dataset, model):
 
 
 def setup_job_env(cfg):
-    torch.set_default_dtype(torch.float32)
+    torch.set_default_dtype(torch.float32) # 默认的浮点类型，之后用 未显式写 dtype= 的方式创建浮点张量时会默认用这个类型
     for var_name, var_value in cfg.env.items():
         os.environ[var_name] = str(var_value)
     set_seed(cfg.seed)
@@ -316,12 +316,12 @@ def initialize_model(cfg, train_dataset=None, val_dataset=None):
 # Define tasks
 ####################################################################
 
-
+# 基类，定义了任务的基本框架和方法
 class BaseTask:
     USE_QINCO_MODEL = True
 
     def __init__(self, cfg):
-        self.cfg = SharedCfgState(cfg)
+        self.cfg = SharedCfgState(cfg) # 
 
         self.setup()
         self.load_data()
@@ -332,16 +332,16 @@ class BaseTask:
                 model.build()
             self.accelerator.print(f"Model:\n{model}")
 
-    def setup(self):
-        setup_job_env(self.cfg)
-
-        ddp_kwargs = DistributedDataParallelKwargs(find_unused_parameters=True)
+    def setup(self): 
+        setup_job_env(self.cfg) # 设置默认浮点类型、把cfg中env字段写入环境变量
+        # 让底层包在模型上的 DistributedDataParallel(..., find_unused_parameters=True)，这样 DDP 才会容忍「本轮 forward 里有些参数没参与、没梯度」的情况。
+        ddp_kwargs = DistributedDataParallelKwargs(find_unused_parameters=True) # 分布式训练时，忽略未使用的参数。Accelerate 会把它转给真正的 DDP
         self.accelerator = QAccelerator(
-            kwargs_handlers=[ddp_kwargs],
-            gradient_accumulation_steps=self.cfg.grad_accumulate,
-            step_scheduler_with_optimizer=False,
-            mixed_precision="fp16",
-            cpu=self.cfg.cpu,
+            kwargs_handlers=[ddp_kwargs], # 传递给真正的 DDP
+            gradient_accumulation_steps=self.cfg.grad_accumulate, # 梯度累积步数
+            step_scheduler_with_optimizer=False, # 不在每个 step 后调用 scheduler.step()
+            mixed_precision="fp16", # 混合精度训练
+            cpu=self.cfg.cpu, # 是否在 CPU 上运行
         )
         log_job_details(self.cfg, self.accelerator)
         self.init_config()

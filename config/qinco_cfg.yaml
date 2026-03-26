@@ -14,20 +14,20 @@ defaults:
 ##### Command-line arguments #####
 ##################################
 
-task: null        # train, eval, etc.
+task: train        # train, eval, etc.
 cpu: false        # Force execution on cpu
 inference: true   # Use Inference-optimized model when not training
 verbose: True
 resume: False     # Resume model training or large-scale search within an index from designated output file
 
 ### Model arguments ###
-M: null
-K: null
-L: null
-de: null
-dh: null
-A: null     # substep candidates per beam, or 0 to disable
-B: null     # Beam size, 1 means no beam
+M: 4
+K: 32
+L: 2
+de: 128
+dh: 256
+A: 0     # substep candidates per beam, or 0 to disable
+B: 1     # Beam size, 1 means no beam
 ivf_K: null
 
 #### Training arguments ###
@@ -35,12 +35,12 @@ optimizer: adamw
 lr: 0.0008
 wd: 0.1 # Weight decay
 grad_clip: 0.1
-batch: 1024
-epochs: 60
+batch: 128
+epochs: 600
 grad_accumulate: 1
 
 ### Input / output paths ###
-output: null
+output: 'results/imagenet_nette_qinco_n01440764.pt'
 model: null               # Path to model weights to use, evaluate, or resume training from
 tensorboard: null         # If specified, will write tensorboard logs inside the specified directory
 ivf_centroids: null       # Where pre-computed IVF centroids are stored
@@ -49,15 +49,21 @@ encoded_db: null          # Path to encoded training database (should match vect
 encoded_trainset: null    # Path to encoded training vectors (should match vectors from 'trainset')
 pairwise_decoder: null    # Path to the weights of the pairwise decoder
 
+vae:
+  model_id: stabilityai/sd-vae-ft-mse
+  scale_factor: 0.18215
+  latent_channels: 4
+  input_image_size: 256
+
 ### Data sources paths ###
-db: null          # Name of database, or path to its file. If name, will auto-populate other fields
-trainset: null    # Path to training data, different from the database
+db: none          # Name of database, or path to its file. If name, will auto-populate other fields
+trainset: /data/wlf/Qinco-main/data/imagenet_vectors/n01440764/vectors.npy    # Path to training data, different from the database
 queries: null     # Queries for evaluating search within database
 queries_gt: null  # Ground-truth for queries
 
 ds: # Can be used to specify a maximum size, or 'null' to use all data available
   trainset: null    # Restrict the maximum size of the trainset. To have smaller epoch, the 'loop' parameter might be more appropriate
-  valset: 10_000    # Number of elements removed from the trainset and kept for validation. Should not represent more than 50% of the maximum trainset
+  valset: 100    # Number of elements removed from the trainset and kept for validation. Should not represent more than 50% of the maximum trainset
   db: null          # Restrict the size of the DB, using only the first elements
   loop: 10_000_000  # Number of training samples used at each epochs, looping over the full training set
 
@@ -89,7 +95,7 @@ scheduler:
   name: cosine
   ramp_epochs: 3
   lr_min_fact: 1e-3
-  stop_patience: 10
+  stop_patience: 50
 
 default_datasets: # Predifined paths to some datasets
   FB_ssnpp1M:

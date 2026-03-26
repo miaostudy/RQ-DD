@@ -98,7 +98,7 @@ class MMapDataset(torch.utils.data.Dataset):
 # Creating & exploting vector datasets
 ####################################################################
 
-
+# 加载向量数据
 def get_data_memmap(filepath, dataname):
     p_file = Path(filepath)
     if not filepath or not p_file.exists() or not p_file.is_file():
@@ -166,7 +166,7 @@ def load_vec_trainset(cfg):
 
     return (xt, xval), (train_dataloader, val_dataloader)
 
-
+# 加载向量数据库
 def load_vec_db(cfg):
     assert (
         cfg.db is not None

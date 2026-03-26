@@ -225,7 +225,7 @@ class QINCoStep(nn.Module):
         self.substep = (
             QincoSubstep(self.cfg, cfg.K, i_step, self.D) if self.has_substep else None
         )
-
+        # 码本
         self.codebook = nn.Embedding(cfg.K, self.D)
 
         if not self.codebook_only:
@@ -283,7 +283,6 @@ class QINCoStep(nn.Module):
         assert codes_B.ndim == 1
         assert xhat_BD.ndim == 2
         assert len(codes_B) == len(xhat_BD)
-
         # Add extra dimension
         codewords_BKD = self.codebook(codes_B.unsqueeze(1))
 
@@ -426,11 +425,11 @@ class QINCo(nn.Module):
 
         self.cfg = cfg
         self.print = self.cfg._accelerator.print
-        self.D = cfg._D
-        self.M = cfg._M_ivf
+        self.D = cfg._D # 128 数据维度
+        self.M = cfg._M_ivf # 8
         self.device = cfg._accelerator.device
-        self.data_mean = nn.Parameter(torch.zeros(self.D), requires_grad=False)
-        self.data_std = nn.Parameter(torch.zeros(()), requires_grad=False)
+        self.data_mean = nn.Parameter(torch.zeros(self.D), requires_grad=False) # (128,)
+        self.data_std = nn.Parameter(torch.zeros(()), requires_grad=False) # (1,)
 
         if cfg.task == "train":
             self.data_mean.copy_(torch.from_numpy(self.cfg._data_mean))
@@ -533,7 +532,7 @@ class QINCo(nn.Module):
             codes, xhat_BD = self.encode((x_in - self.data_mean) / self.data_std)
             return codes
         elif step == "decode":
-            x_out = self.decode(x_in)
+            x_out = self.decode(x_in) #(B, D)
             return x_out * self.data_std + self.data_mean
         else:
             raise ValueError(f"{step=}")

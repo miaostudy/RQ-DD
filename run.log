@@ -1,0 +1,1335 @@
+[2026-03-25 16:48:21,664][qinco.utils][INFO] - Running on: local
+[2026-03-25 16:48:21,665][qinco.utils][INFO] - Running args: ['run.py', 'task=eval', 'model=models/qinco2_L-bigann1M-8x8.pt', 'db=bigann1M', 'A=32', 'B=64', 'ds.db=50000']
+[2026-03-25 16:48:21,735][qinco.utils][INFO] - 8 GPU(s) available
+[2026-03-25 16:48:21,735][qinco.utils][INFO] - Will use device [cuda] on main process (with 1 processes)
+[2026-03-25 16:48:21,892][qinco.utils][INFO] - Device 0: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-25 16:48:22,035][qinco.utils][INFO] - Device 1: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-25 16:48:22,168][qinco.utils][INFO] - Device 2: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-25 16:48:22,304][qinco.utils][INFO] - Device 3: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-25 16:48:22,442][qinco.utils][INFO] - Device 4: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-25 16:48:22,579][qinco.utils][INFO] - Device 5: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-25 16:48:22,717][qinco.utils][INFO] - Device 6: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-25 16:48:22,847][qinco.utils][INFO] - Device 7: 2.97 / 47.37 GB used (44.40 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=44.40 GB [NVIDIA GeForce RTX 4090]
+[2026-03-25 16:48:22,847][qinco.utils][INFO] - Load model checkpoint from models/qinco2_L-bigann1M-8x8.pt
+[2026-03-25 16:48:22,973][qinco.utils][INFO] - Configuration:
+{'task': 'eval', 'cpu': False, 'inference': True, 'verbose': True, 'resume': False, 'M': 8, 'K': 256, 'L': 16, 'de': 384, 'dh': 384, 'A': 32, 'B': 64, 'ivf_K': 1048576, 'optimizer': 'adamw', 'lr': 0.0008, 'wd': 0.1, 'grad_clip': 0.1, 'batch': 1024, 'epochs': 60, 'grad_accumulate': 1, 'output': None, 'model': 'models/qinco2_L-bigann1M-8x8.pt', 'tensorboard': None, 'ivf_centroids': None, 'index': None, 'encoded_db': None, 'encoded_trainset': None, 'pairwise_decoder': None, 'db': 'data/bigann/bigann_base.bvecs', 'trainset': 'data/bigann/bigann_learn.bvecs', 'queries': 'data/bigann/bigann_query.bvecs', 'queries_gt': 'data/bigann/gnd/idx_1M.ivecs', 'ds': {'trainset': None, 'valset': 10000, 'db': 50000, 'loop': 10000000}, 'encode_trainset': False, 'n_pairwise_codebooks': 2, 'env': {'PYTORCH_CUDA_ALLOC_CONF': 'expandable_segments:True', 'PYTORCH_JIT': '1'}, 'seed': 0, 'qinco1_mode': None, 'codebook_noise_init': 0.1, 'enc_max_bs': 65536, 'ivf_in_use': None, 'mse_scale': 0.0001, 'scheduler': {'name': 'cosine', 'ramp_epochs': 3, 'lr_min_fact': 0.001, 'stop_patience': 10}, 'search': {'index_key': 'IVF${ivf_K}_HNSW32,RQ${M}x8_Nqint8', 'aq_training_samples': 1000000, 'nthreads': 32, 'batch_size': 12288, 'nshort': [4, 10], 'nprobe': [4], 'quantizer_efSearch': [4], 'nmid_short': [1, 4]}}
+[2026-03-25 16:48:22,974][qinco.utils][INFO] - Loading database from data/bigann/bigann_base.bvecs
+[2026-03-25 16:48:22,974][qinco.utils][INFO] - Max size of the database: 1000000
+[2026-03-25 16:48:22,974][qinco.utils][INFO] - Will use only 50000 elements from the database
+[2026-03-25 16:48:22,975][qinco.utils][INFO] - Got memory-mapped dataset of size 50000
+[2026-03-25 16:48:22,975][qinco.utils][INFO] - Test set: (50000, 128)
+[2026-03-25 16:48:23,459][qinco.utils][INFO] - Optimizing decoder
+[2026-03-25 16:48:27,103][qinco.utils][INFO] - Warmup decoder
+[2026-03-25 16:48:31,480][qinco.utils][INFO] - Done for decoder
+[2026-03-25 16:48:31,480][qinco.utils][INFO] - Optimizing encoder
+[2026-03-25 16:48:35,108][qinco.utils][INFO] - Warmup encoder
+[2026-03-25 16:48:39,772][qinco.utils][INFO] - Done for encoder
+[2026-03-25 16:48:39,775][qinco.utils][INFO] - Model:
+QINCoInferenceWrapper(
+  (qinco_model): QINCo(
+    (steps): ModuleList(
+      (0): QINCoStep(
+        (codebook): Embedding(256, 128)
+      )
+      (1-7): 7 x QINCoStep(
+        (substep): QincoSubstep(
+          (codebook): Embedding(256, 128)
+        )
+        (codebook): Embedding(256, 128)
+        (concat): QConcat(
+          (mlp): Linear(in_features=512, out_features=384, bias=True)
+        )
+        (residual_blocks): Sequential(
+          (0): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (1): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (2): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (3): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (4): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (5): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (6): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (7): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (8): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (9): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (10): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (11): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (12): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (13): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (14): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (15): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+        )
+        (in_proj): Linear(in_features=128, out_features=384, bias=False)
+        (out_proj): Linear(in_features=384, out_features=128, bias=False)
+      )
+    )
+  )
+  (encoder): RecursiveScriptModule(original_name=QINCoInferenceEncoder)
+  (decoder): RecursiveScriptModule(original_name=QINCoInferenceDecoder)
+)
+[2026-03-25 16:48:39,775][qinco.utils][INFO] - ====================== RUNNING TASK eval
+[2026-03-25 16:50:04,361][qinco.utils][INFO] - Warm-start with 10 batches: done
+[2026-03-25 16:52:14,501][qinco.utils][INFO] - Test metrics: [[MSE=0.810867]]
+[2026-03-25 16:52:15,113][qinco.utils][INFO] - test_codeword_entropy=7.98229 (min=7.96125)
+[2026-03-25 16:52:15,115][qinco.utils][INFO] - Task done
+[2026-03-26 03:01:41,302][qinco.utils][INFO] - Running on: local
+[2026-03-26 03:01:41,302][qinco.utils][INFO] - Running args: ['run.py', 'task=eval']
+[2026-03-26 03:01:41,373][qinco.utils][INFO] - 8 GPU(s) available
+[2026-03-26 03:01:41,373][qinco.utils][INFO] - Will use device [cuda] on main process (with 1 processes)
+[2026-03-26 03:01:41,532][qinco.utils][INFO] - Device 0: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:01:41,668][qinco.utils][INFO] - Device 1: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:01:41,812][qinco.utils][INFO] - Device 2: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:01:41,956][qinco.utils][INFO] - Device 3: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:01:42,104][qinco.utils][INFO] - Device 4: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:01:42,252][qinco.utils][INFO] - Device 5: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:01:42,404][qinco.utils][INFO] - Device 6: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:05:11,582][qinco.utils][INFO] - Running on: local
+[2026-03-26 03:05:11,583][qinco.utils][INFO] - Running args: ['/data/wlf/Qinco-main/run.py']
+[2026-03-26 03:05:11,659][qinco.utils][INFO] - 8 GPU(s) available
+[2026-03-26 03:05:11,659][qinco.utils][INFO] - Will use device [cuda] on main process (with 1 processes)
+[2026-03-26 03:05:11,808][qinco.utils][INFO] - Device 0: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:05:11,943][qinco.utils][INFO] - Device 1: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:05:12,078][qinco.utils][INFO] - Device 2: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:05:12,230][qinco.utils][INFO] - Device 3: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:05:12,377][qinco.utils][INFO] - Device 4: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:05:12,522][qinco.utils][INFO] - Device 5: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:05:12,667][qinco.utils][INFO] - Device 6: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:05:12,810][qinco.utils][INFO] - Device 7: 2.37 / 47.37 GB used (45.00 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=45.00 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:07:52,257][qinco.utils][INFO] - Running on: local
+[2026-03-26 03:07:52,258][qinco.utils][INFO] - Running args: ['/data/wlf/Qinco-main/run.py']
+[2026-03-26 03:07:52,347][qinco.utils][INFO] - 8 GPU(s) available
+[2026-03-26 03:07:52,347][qinco.utils][INFO] - Will use device [cuda] on main process (with 1 processes)
+[2026-03-26 03:07:52,501][qinco.utils][INFO] - Device 0: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:07:52,634][qinco.utils][INFO] - Device 1: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:07:52,767][qinco.utils][INFO] - Device 2: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:07:52,916][qinco.utils][INFO] - Device 3: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:07:53,058][qinco.utils][INFO] - Device 4: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:07:53,195][qinco.utils][INFO] - Device 5: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:07:53,334][qinco.utils][INFO] - Device 6: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:07:53,474][qinco.utils][INFO] - Device 7: 2.37 / 47.37 GB used (45.00 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=45.00 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:07:53,475][qinco.utils][INFO] - Load model checkpoint from models/qinco2_L-bigann1M-8x8.pt
+[2026-03-26 03:07:53,655][qinco.utils][INFO] - Configuration:
+{'task': 'eval', 'cpu': False, 'inference': True, 'verbose': True, 'resume': False, 'M': 8, 'K': 256, 'L': 16, 'de': 384, 'dh': 384, 'A': 16, 'B': 32, 'ivf_K': 1048576, 'optimizer': 'adamw', 'lr': 0.0008, 'wd': 0.1, 'grad_clip': 0.1, 'batch': 1024, 'epochs': 60, 'grad_accumulate': 1, 'output': None, 'model': 'models/qinco2_L-bigann1M-8x8.pt', 'tensorboard': None, 'ivf_centroids': None, 'index': None, 'encoded_db': None, 'encoded_trainset': None, 'pairwise_decoder': None, 'db': 'data/bigann/bigann_base.bvecs', 'trainset': 'data/bigann/bigann_learn.bvecs', 'queries': 'data/bigann/bigann_query.bvecs', 'queries_gt': 'data/bigann/gnd/idx_1M.ivecs', 'ds': {'trainset': None, 'valset': 10000, 'db': 1000000, 'loop': 10000000}, 'encode_trainset': False, 'n_pairwise_codebooks': 2, 'env': {'PYTORCH_CUDA_ALLOC_CONF': 'expandable_segments:True', 'PYTORCH_JIT': '1'}, 'seed': 0, 'qinco1_mode': None, 'codebook_noise_init': 0.1, 'enc_max_bs': 65536, 'ivf_in_use': None, 'mse_scale': 0.0001, 'scheduler': {'name': 'cosine', 'ramp_epochs': 3, 'lr_min_fact': 0.001, 'stop_patience': 10}, 'search': {'index_key': 'IVF${ivf_K}_HNSW32,RQ${M}x8_Nqint8', 'aq_training_samples': 1000000, 'nthreads': 32, 'batch_size': 12288, 'nshort': [4, 10], 'nprobe': [4], 'quantizer_efSearch': [4], 'nmid_short': [1, 4]}}
+[2026-03-26 03:07:53,656][qinco.utils][INFO] - Loading database from data/bigann/bigann_base.bvecs
+[2026-03-26 03:07:53,657][qinco.utils][INFO] - Max size of the database: 1000000
+[2026-03-26 03:07:53,657][qinco.utils][INFO] - Got memory-mapped dataset of size 1000000
+[2026-03-26 03:07:53,659][qinco.utils][INFO] - Test set: (1000000, 128)
+[2026-03-26 03:07:54,217][qinco.utils][INFO] - Optimizing decoder
+[2026-03-26 03:07:59,284][qinco.utils][INFO] - Warmup decoder
+[2026-03-26 03:08:02,929][qinco.utils][INFO] - Done for decoder
+[2026-03-26 03:08:02,930][qinco.utils][INFO] - Optimizing encoder
+[2026-03-26 03:08:40,323][qinco.utils][INFO] - Running on: local
+[2026-03-26 03:08:40,324][qinco.utils][INFO] - Running args: ['/data/wlf/Qinco-main/run.py']
+[2026-03-26 03:08:40,404][qinco.utils][INFO] - 8 GPU(s) available
+[2026-03-26 03:08:40,405][qinco.utils][INFO] - Will use device [cuda] on main process (with 1 processes)
+[2026-03-26 03:08:40,558][qinco.utils][INFO] - Device 0: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:08:40,693][qinco.utils][INFO] - Device 1: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:08:40,827][qinco.utils][INFO] - Device 2: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:08:40,981][qinco.utils][INFO] - Device 3: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:08:41,115][qinco.utils][INFO] - Device 4: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:08:41,250][qinco.utils][INFO] - Device 5: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:08:41,386][qinco.utils][INFO] - Device 6: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:08:41,530][qinco.utils][INFO] - Device 7: 2.37 / 47.37 GB used (45.00 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=45.00 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:08:41,531][qinco.utils][INFO] - Load model checkpoint from models/qinco2_L-bigann1M-8x8.pt
+[2026-03-26 03:08:41,705][qinco.utils][INFO] - Configuration:
+{'task': 'eval', 'cpu': False, 'inference': True, 'verbose': True, 'resume': False, 'M': 8, 'K': 256, 'L': 16, 'de': 384, 'dh': 384, 'A': 16, 'B': 32, 'ivf_K': 1048576, 'optimizer': 'adamw', 'lr': 0.0008, 'wd': 0.1, 'grad_clip': 0.1, 'batch': 1024, 'epochs': 60, 'grad_accumulate': 1, 'output': None, 'model': 'models/qinco2_L-bigann1M-8x8.pt', 'tensorboard': None, 'ivf_centroids': None, 'index': None, 'encoded_db': None, 'encoded_trainset': None, 'pairwise_decoder': None, 'db': 'data/bigann/bigann_base.bvecs', 'trainset': 'data/bigann/bigann_learn.bvecs', 'queries': 'data/bigann/bigann_query.bvecs', 'queries_gt': 'data/bigann/gnd/idx_1M.ivecs', 'ds': {'trainset': None, 'valset': 10000, 'db': 1000000, 'loop': 10000000}, 'encode_trainset': False, 'n_pairwise_codebooks': 2, 'env': {'PYTORCH_CUDA_ALLOC_CONF': 'expandable_segments:True', 'PYTORCH_JIT': '1'}, 'seed': 0, 'qinco1_mode': None, 'codebook_noise_init': 0.1, 'enc_max_bs': 65536, 'ivf_in_use': None, 'mse_scale': 0.0001, 'scheduler': {'name': 'cosine', 'ramp_epochs': 3, 'lr_min_fact': 0.001, 'stop_patience': 10}, 'search': {'index_key': 'IVF${ivf_K}_HNSW32,RQ${M}x8_Nqint8', 'aq_training_samples': 1000000, 'nthreads': 32, 'batch_size': 12288, 'nshort': [4, 10], 'nprobe': [4], 'quantizer_efSearch': [4], 'nmid_short': [1, 4]}}
+[2026-03-26 03:08:41,705][qinco.utils][INFO] - Loading database from data/bigann/bigann_base.bvecs
+[2026-03-26 03:08:41,706][qinco.utils][INFO] - Max size of the database: 1000000
+[2026-03-26 03:08:41,707][qinco.utils][INFO] - Got memory-mapped dataset of size 1000000
+[2026-03-26 03:08:41,708][qinco.utils][INFO] - Test set: (1000000, 128)
+[2026-03-26 03:08:42,221][qinco.utils][INFO] - Optimizing decoder
+[2026-03-26 03:08:47,686][qinco.utils][INFO] - Warmup decoder
+[2026-03-26 03:11:43,812][qinco.utils][INFO] - Running on: local
+[2026-03-26 03:11:43,813][qinco.utils][INFO] - Running args: ['/data/wlf/Qinco-main/run.py']
+[2026-03-26 03:11:43,897][qinco.utils][INFO] - 8 GPU(s) available
+[2026-03-26 03:11:43,897][qinco.utils][INFO] - Will use device [cuda] on main process (with 1 processes)
+[2026-03-26 03:11:44,057][qinco.utils][INFO] - Device 0: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:11:44,195][qinco.utils][INFO] - Device 1: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:11:44,342][qinco.utils][INFO] - Device 2: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:11:44,511][qinco.utils][INFO] - Device 3: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:11:44,661][qinco.utils][INFO] - Device 4: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:11:44,808][qinco.utils][INFO] - Device 5: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:11:44,958][qinco.utils][INFO] - Device 6: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:11:45,116][qinco.utils][INFO] - Device 7: 2.37 / 47.37 GB used (45.00 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=45.00 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:11:45,118][qinco.utils][INFO] - Load model checkpoint from models/qinco2_L-bigann1M-8x8.pt
+[2026-03-26 03:11:45,343][qinco.utils][INFO] - Configuration:
+{'task': 'eval', 'cpu': False, 'inference': True, 'verbose': True, 'resume': False, 'M': 8, 'K': 256, 'L': 16, 'de': 384, 'dh': 384, 'A': 16, 'B': 32, 'ivf_K': 1048576, 'optimizer': 'adamw', 'lr': 0.0008, 'wd': 0.1, 'grad_clip': 0.1, 'batch': 1024, 'epochs': 60, 'grad_accumulate': 1, 'output': None, 'model': 'models/qinco2_L-bigann1M-8x8.pt', 'tensorboard': None, 'ivf_centroids': None, 'index': None, 'encoded_db': None, 'encoded_trainset': None, 'pairwise_decoder': None, 'db': 'data/bigann/bigann_base.bvecs', 'trainset': 'data/bigann/bigann_learn.bvecs', 'queries': 'data/bigann/bigann_query.bvecs', 'queries_gt': 'data/bigann/gnd/idx_1M.ivecs', 'ds': {'trainset': None, 'valset': 10000, 'db': 1000000, 'loop': 10000000}, 'encode_trainset': False, 'n_pairwise_codebooks': 2, 'env': {'PYTORCH_CUDA_ALLOC_CONF': 'expandable_segments:True', 'PYTORCH_JIT': '1'}, 'seed': 0, 'qinco1_mode': None, 'codebook_noise_init': 0.1, 'enc_max_bs': 65536, 'ivf_in_use': None, 'mse_scale': 0.0001, 'scheduler': {'name': 'cosine', 'ramp_epochs': 3, 'lr_min_fact': 0.001, 'stop_patience': 10}, 'search': {'index_key': 'IVF${ivf_K}_HNSW32,RQ${M}x8_Nqint8', 'aq_training_samples': 1000000, 'nthreads': 32, 'batch_size': 12288, 'nshort': [4, 10], 'nprobe': [4], 'quantizer_efSearch': [4], 'nmid_short': [1, 4]}}
+[2026-03-26 03:11:45,344][qinco.utils][INFO] - Loading database from data/bigann/bigann_base.bvecs
+[2026-03-26 03:11:45,346][qinco.utils][INFO] - Max size of the database: 1000000
+[2026-03-26 03:11:45,347][qinco.utils][INFO] - Got memory-mapped dataset of size 1000000
+[2026-03-26 03:11:45,348][qinco.utils][INFO] - Test set: (1000000, 128)
+[2026-03-26 03:11:46,048][qinco.utils][INFO] - Optimizing decoder
+[2026-03-26 03:11:53,661][qinco.utils][INFO] - Warmup decoder
+[2026-03-26 03:11:57,496][qinco.utils][INFO] - Done for decoder
+[2026-03-26 03:11:57,496][qinco.utils][INFO] - Optimizing encoder
+[2026-03-26 03:12:05,125][qinco.utils][INFO] - Warmup encoder
+[2026-03-26 03:13:09,923][qinco.utils][INFO] - Running on: local
+[2026-03-26 03:13:09,924][qinco.utils][INFO] - Running args: ['/data/wlf/Qinco-main/run.py']
+[2026-03-26 03:13:10,007][qinco.utils][INFO] - 8 GPU(s) available
+[2026-03-26 03:13:10,008][qinco.utils][INFO] - Will use device [cuda] on main process (with 1 processes)
+[2026-03-26 03:13:10,165][qinco.utils][INFO] - Device 0: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:13:10,300][qinco.utils][INFO] - Device 1: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:13:10,436][qinco.utils][INFO] - Device 2: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:13:10,594][qinco.utils][INFO] - Device 3: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:13:10,735][qinco.utils][INFO] - Device 4: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:13:10,876][qinco.utils][INFO] - Device 5: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:13:11,020][qinco.utils][INFO] - Device 6: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:13:11,167][qinco.utils][INFO] - Device 7: 2.37 / 47.37 GB used (45.00 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=45.00 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:13:11,168][qinco.utils][INFO] - Load model checkpoint from models/qinco2_L-bigann1M-8x8.pt
+[2026-03-26 03:13:11,394][qinco.utils][INFO] - Configuration:
+{'task': 'eval', 'cpu': False, 'inference': True, 'verbose': True, 'resume': False, 'M': 8, 'K': 256, 'L': 16, 'de': 384, 'dh': 384, 'A': 16, 'B': 32, 'ivf_K': 1048576, 'optimizer': 'adamw', 'lr': 0.0008, 'wd': 0.1, 'grad_clip': 0.1, 'batch': 1024, 'epochs': 60, 'grad_accumulate': 1, 'output': None, 'model': 'models/qinco2_L-bigann1M-8x8.pt', 'tensorboard': None, 'ivf_centroids': None, 'index': None, 'encoded_db': None, 'encoded_trainset': None, 'pairwise_decoder': None, 'db': 'data/bigann/bigann_base.bvecs', 'trainset': 'data/bigann/bigann_learn.bvecs', 'queries': 'data/bigann/bigann_query.bvecs', 'queries_gt': 'data/bigann/gnd/idx_1M.ivecs', 'ds': {'trainset': None, 'valset': 10000, 'db': 1000000, 'loop': 10000000}, 'encode_trainset': False, 'n_pairwise_codebooks': 2, 'env': {'PYTORCH_CUDA_ALLOC_CONF': 'expandable_segments:True', 'PYTORCH_JIT': '1'}, 'seed': 0, 'qinco1_mode': None, 'codebook_noise_init': 0.1, 'enc_max_bs': 65536, 'ivf_in_use': None, 'mse_scale': 0.0001, 'scheduler': {'name': 'cosine', 'ramp_epochs': 3, 'lr_min_fact': 0.001, 'stop_patience': 10}, 'search': {'index_key': 'IVF${ivf_K}_HNSW32,RQ${M}x8_Nqint8', 'aq_training_samples': 1000000, 'nthreads': 32, 'batch_size': 12288, 'nshort': [4, 10], 'nprobe': [4], 'quantizer_efSearch': [4], 'nmid_short': [1, 4]}}
+[2026-03-26 03:13:11,394][qinco.utils][INFO] - Loading database from data/bigann/bigann_base.bvecs
+[2026-03-26 03:13:11,396][qinco.utils][INFO] - Max size of the database: 1000000
+[2026-03-26 03:13:11,397][qinco.utils][INFO] - Got memory-mapped dataset of size 1000000
+[2026-03-26 03:13:11,398][qinco.utils][INFO] - Test set: (1000000, 128)
+[2026-03-26 03:13:12,041][qinco.utils][INFO] - Optimizing decoder
+[2026-03-26 03:20:45,353][qinco.utils][INFO] - Running on: local
+[2026-03-26 03:20:45,354][qinco.utils][INFO] - Running args: ['/data/wlf/Qinco-main/run.py']
+[2026-03-26 03:20:45,432][qinco.utils][INFO] - 8 GPU(s) available
+[2026-03-26 03:20:45,433][qinco.utils][INFO] - Will use device [cuda] on main process (with 1 processes)
+[2026-03-26 03:20:45,586][qinco.utils][INFO] - Device 0: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:20:45,727][qinco.utils][INFO] - Device 1: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:20:45,871][qinco.utils][INFO] - Device 2: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:20:46,029][qinco.utils][INFO] - Device 3: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:20:46,175][qinco.utils][INFO] - Device 4: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:20:46,321][qinco.utils][INFO] - Device 5: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:20:46,467][qinco.utils][INFO] - Device 6: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:20:46,625][qinco.utils][INFO] - Device 7: 2.37 / 47.37 GB used (45.00 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=45.00 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 03:20:46,626][qinco.utils][INFO] - Load model checkpoint from models/qinco2_L-bigann1M-8x8.pt
+[2026-03-26 03:20:46,845][qinco.utils][INFO] - Configuration:
+{'task': 'eval', 'cpu': False, 'inference': True, 'verbose': True, 'resume': False, 'M': 8, 'K': 256, 'L': 16, 'de': 384, 'dh': 384, 'A': 16, 'B': 32, 'ivf_K': 1048576, 'optimizer': 'adamw', 'lr': 0.0008, 'wd': 0.1, 'grad_clip': 0.1, 'batch': 1024, 'epochs': 60, 'grad_accumulate': 1, 'output': None, 'model': 'models/qinco2_L-bigann1M-8x8.pt', 'tensorboard': None, 'ivf_centroids': None, 'index': None, 'encoded_db': None, 'encoded_trainset': None, 'pairwise_decoder': None, 'db': 'data/bigann/bigann_base.bvecs', 'trainset': 'data/bigann/bigann_learn.bvecs', 'queries': 'data/bigann/bigann_query.bvecs', 'queries_gt': 'data/bigann/gnd/idx_1M.ivecs', 'ds': {'trainset': None, 'valset': 10000, 'db': 1000000, 'loop': 10000000}, 'encode_trainset': False, 'n_pairwise_codebooks': 2, 'env': {'PYTORCH_CUDA_ALLOC_CONF': 'expandable_segments:True', 'PYTORCH_JIT': '1'}, 'seed': 0, 'qinco1_mode': None, 'codebook_noise_init': 0.1, 'enc_max_bs': 65536, 'ivf_in_use': None, 'mse_scale': 0.0001, 'scheduler': {'name': 'cosine', 'ramp_epochs': 3, 'lr_min_fact': 0.001, 'stop_patience': 10}, 'search': {'index_key': 'IVF${ivf_K}_HNSW32,RQ${M}x8_Nqint8', 'aq_training_samples': 1000000, 'nthreads': 32, 'batch_size': 12288, 'nshort': [4, 10], 'nprobe': [4], 'quantizer_efSearch': [4], 'nmid_short': [1, 4]}, 'model_args': {'L': 16, 'de': 384, 'dh': 384, 'A': 16, 'B': 32, 'M': 8, 'K': 256, 'ivf_K': 1048576}}
+[2026-03-26 03:21:36,520][qinco.utils][INFO] - Loading database from data/bigann/bigann_base.bvecs
+[2026-03-26 03:21:36,521][qinco.utils][INFO] - Max size of the database: 1000000
+[2026-03-26 03:21:36,523][qinco.utils][INFO] - Got memory-mapped dataset of size 1000000
+[2026-03-26 03:21:36,525][qinco.utils][INFO] - Test set: (1000000, 128)
+[2026-03-26 04:54:52,638][qinco.utils][INFO] - Running on: local
+[2026-03-26 04:54:52,639][qinco.utils][INFO] - Running args: ['/data/wlf/Qinco-main/run.py']
+[2026-03-26 04:54:52,736][qinco.utils][INFO] - 8 GPU(s) available
+[2026-03-26 04:54:52,737][qinco.utils][INFO] - Will use device [cuda] on main process (with 1 processes)
+[2026-03-26 04:54:52,902][qinco.utils][INFO] - Device 0: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 04:54:53,041][qinco.utils][INFO] - Device 1: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 04:54:53,182][qinco.utils][INFO] - Device 2: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 04:54:53,342][qinco.utils][INFO] - Device 3: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 04:54:53,491][qinco.utils][INFO] - Device 4: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 04:54:53,639][qinco.utils][INFO] - Device 5: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 04:54:53,790][qinco.utils][INFO] - Device 6: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 04:54:53,945][qinco.utils][INFO] - Device 7: 2.37 / 47.37 GB used (45.00 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=45.00 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 04:55:46,222][qinco.utils][INFO] - Load model checkpoint from models/qinco2_L-bigann1M-8x8.pt
+[2026-03-26 04:57:47,767][qinco.utils][INFO] - Running on: local
+[2026-03-26 04:57:47,768][qinco.utils][INFO] - Running args: ['/data/wlf/Qinco-main/run.py']
+[2026-03-26 04:57:47,853][qinco.utils][INFO] - 8 GPU(s) available
+[2026-03-26 04:57:47,854][qinco.utils][INFO] - Will use device [cuda] on main process (with 1 processes)
+[2026-03-26 04:57:48,015][qinco.utils][INFO] - Device 0: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 04:57:48,150][qinco.utils][INFO] - Device 1: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 04:57:48,287][qinco.utils][INFO] - Device 2: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 04:57:48,446][qinco.utils][INFO] - Device 3: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 04:57:48,586][qinco.utils][INFO] - Device 4: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 04:57:48,725][qinco.utils][INFO] - Device 5: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 04:57:48,865][qinco.utils][INFO] - Device 6: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 04:57:49,013][qinco.utils][INFO] - Device 7: 2.37 / 47.37 GB used (45.00 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=45.00 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 04:59:41,003][qinco.utils][INFO] - Load model checkpoint from models/qinco2_L-bigann1M-8x8.pt
+[2026-03-26 05:07:54,113][qinco.utils][INFO] - Configuration:
+{'task': 'eval', 'cpu': False, 'inference': True, 'verbose': True, 'resume': False, 'M': 8, 'K': 256, 'L': 16, 'de': 384, 'dh': 384, 'A': 16, 'B': 32, 'ivf_K': 1048576, 'optimizer': 'adamw', 'lr': 0.0008, 'wd': 0.1, 'grad_clip': 0.1, 'batch': 1024, 'epochs': 60, 'grad_accumulate': 1, 'output': None, 'model': 'models/qinco2_L-bigann1M-8x8.pt', 'tensorboard': None, 'ivf_centroids': None, 'index': None, 'encoded_db': None, 'encoded_trainset': None, 'pairwise_decoder': None, 'db': 'data/bigann/bigann_base.bvecs', 'trainset': 'data/bigann/bigann_learn.bvecs', 'queries': 'data/bigann/bigann_query.bvecs', 'queries_gt': 'data/bigann/gnd/idx_1M.ivecs', 'ds': {'trainset': None, 'valset': 10000, 'db': 1000000, 'loop': 10000000}, 'encode_trainset': False, 'n_pairwise_codebooks': 2, 'env': {'PYTORCH_CUDA_ALLOC_CONF': 'expandable_segments:True', 'PYTORCH_JIT': '1'}, 'seed': 0, 'qinco1_mode': None, 'codebook_noise_init': 0.1, 'enc_max_bs': 65536, 'ivf_in_use': None, 'mse_scale': 0.0001, 'scheduler': {'name': 'cosine', 'ramp_epochs': 3, 'lr_min_fact': 0.001, 'stop_patience': 10}, 'search': {'index_key': 'IVF${ivf_K}_HNSW32,RQ${M}x8_Nqint8', 'aq_training_samples': 1000000, 'nthreads': 32, 'batch_size': 12288, 'nshort': [4, 10], 'nprobe': [4], 'quantizer_efSearch': [4], 'nmid_short': [1, 4]}, 'model_args': {'L': 16, 'de': 384, 'dh': 384, 'A': 16, 'B': 32, 'M': 8, 'K': 256, 'ivf_K': 1048576}}
+[2026-03-26 05:08:54,406][qinco.utils][INFO] - Loading database from data/bigann/bigann_base.bvecs
+[2026-03-26 05:20:11,483][qinco.utils][INFO] - Max size of the database: 1000000
+[2026-03-26 05:20:19,241][qinco.utils][INFO] - Got memory-mapped dataset of size 1000000
+[2026-03-26 05:20:55,143][qinco.utils][INFO] - Test set: (1000000, 128)
+[2026-03-26 05:48:00,811][qinco.utils][INFO] - Optimizing decoder
+[2026-03-26 05:48:08,337][qinco.utils][INFO] - Warmup decoder
+[2026-03-26 05:48:11,974][qinco.utils][INFO] - Done for decoder
+[2026-03-26 05:48:11,976][qinco.utils][INFO] - Optimizing encoder
+[2026-03-26 05:48:19,459][qinco.utils][INFO] - Warmup encoder
+[2026-03-26 05:48:23,043][qinco.utils][INFO] - Done for encoder
+[2026-03-26 05:52:33,880][qinco.utils][INFO] - Model:
+QINCoInferenceWrapper(
+  (qinco_model): QINCo(
+    (steps): ModuleList(
+      (0): QINCoStep(
+        (codebook): Embedding(256, 128)
+      )
+      (1-7): 7 x QINCoStep(
+        (substep): QincoSubstep(
+          (codebook): Embedding(256, 128)
+        )
+        (codebook): Embedding(256, 128)
+        (concat): QConcat(
+          (mlp): Linear(in_features=512, out_features=384, bias=True)
+        )
+        (residual_blocks): Sequential(
+          (0): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (1): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (2): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (3): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (4): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (5): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (6): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (7): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (8): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (9): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (10): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (11): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (12): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (13): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (14): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (15): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+        )
+        (in_proj): Linear(in_features=128, out_features=384, bias=False)
+        (out_proj): Linear(in_features=384, out_features=128, bias=False)
+      )
+    )
+  )
+  (encoder): RecursiveScriptModule(original_name=QINCoInferenceEncoder)
+  (decoder): RecursiveScriptModule(original_name=QINCoInferenceDecoder)
+)
+[2026-03-26 05:56:16,665][qinco.utils][INFO] - ====================== RUNNING TASK eval
+[2026-03-26 06:03:41,657][qinco.utils][INFO] - Running on: local
+[2026-03-26 06:03:41,658][qinco.utils][INFO] - Running args: ['/data/wlf/Qinco-main/run.py']
+[2026-03-26 06:03:41,727][qinco.utils][INFO] - 8 GPU(s) available
+[2026-03-26 06:03:41,727][qinco.utils][INFO] - Will use device [cuda] on main process (with 1 processes)
+[2026-03-26 06:03:41,867][qinco.utils][INFO] - Device 0: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:03:41,994][qinco.utils][INFO] - Device 1: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:03:42,117][qinco.utils][INFO] - Device 2: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:03:42,253][qinco.utils][INFO] - Device 3: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:03:42,383][qinco.utils][INFO] - Device 4: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:03:42,509][qinco.utils][INFO] - Device 5: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:03:42,636][qinco.utils][INFO] - Device 6: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:03:42,768][qinco.utils][INFO] - Device 7: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:04:46,711][qinco.utils][INFO] - Running on: local
+[2026-03-26 06:04:46,712][qinco.utils][INFO] - Running args: ['/data/wlf/Qinco-main/run.py']
+[2026-03-26 06:04:46,781][qinco.utils][INFO] - 8 GPU(s) available
+[2026-03-26 06:04:46,781][qinco.utils][INFO] - Will use device [cuda] on main process (with 1 processes)
+[2026-03-26 06:04:46,923][qinco.utils][INFO] - Device 0: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:04:47,052][qinco.utils][INFO] - Device 1: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:04:47,174][qinco.utils][INFO] - Device 2: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:04:47,304][qinco.utils][INFO] - Device 3: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:04:47,431][qinco.utils][INFO] - Device 4: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:04:47,557][qinco.utils][INFO] - Device 5: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:04:47,684][qinco.utils][INFO] - Device 6: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:04:47,813][qinco.utils][INFO] - Device 7: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:04:47,814][qinco.utils][INFO] - Load model checkpoint from models/qinco2_L-bigann1M-8x8.pt
+[2026-03-26 06:04:47,993][qinco.utils][INFO] - Configuration:
+{'task': 'eval', 'cpu': False, 'inference': True, 'verbose': True, 'resume': False, 'M': 8, 'K': 256, 'L': 16, 'de': 384, 'dh': 384, 'A': 16, 'B': 32, 'ivf_K': 1048576, 'optimizer': 'adamw', 'lr': 0.0008, 'wd': 0.1, 'grad_clip': 0.1, 'batch': 1024, 'epochs': 60, 'grad_accumulate': 1, 'output': None, 'model': 'models/qinco2_L-bigann1M-8x8.pt', 'tensorboard': None, 'ivf_centroids': None, 'index': None, 'encoded_db': None, 'encoded_trainset': None, 'pairwise_decoder': None, 'db': 'data/bigann/bigann_base.bvecs', 'trainset': 'data/bigann/bigann_learn.bvecs', 'queries': 'data/bigann/bigann_query.bvecs', 'queries_gt': 'data/bigann/gnd/idx_1M.ivecs', 'ds': {'trainset': None, 'valset': 10000, 'db': 1000000, 'loop': 10000000}, 'encode_trainset': False, 'n_pairwise_codebooks': 2, 'env': {'PYTORCH_CUDA_ALLOC_CONF': 'expandable_segments:True', 'PYTORCH_JIT': '1'}, 'seed': 0, 'qinco1_mode': None, 'codebook_noise_init': 0.1, 'enc_max_bs': 65536, 'ivf_in_use': None, 'mse_scale': 0.0001, 'scheduler': {'name': 'cosine', 'ramp_epochs': 3, 'lr_min_fact': 0.001, 'stop_patience': 10}, 'search': {'index_key': 'IVF${ivf_K}_HNSW32,RQ${M}x8_Nqint8', 'aq_training_samples': 1000000, 'nthreads': 32, 'batch_size': 12288, 'nshort': [4, 10], 'nprobe': [4], 'quantizer_efSearch': [4], 'nmid_short': [1, 4]}, 'model_args': {'L': 16, 'de': 384, 'dh': 384, 'A': 16, 'B': 32, 'M': 8, 'K': 256, 'ivf_K': 1048576}}
+[2026-03-26 06:04:47,994][qinco.utils][INFO] - Loading database from data/bigann/bigann_base.bvecs
+[2026-03-26 06:04:47,995][qinco.utils][INFO] - Max size of the database: 1000000
+[2026-03-26 06:04:47,996][qinco.utils][INFO] - Got memory-mapped dataset of size 1000000
+[2026-03-26 06:04:47,996][qinco.utils][INFO] - Test set: (1000000, 128)
+[2026-03-26 06:04:48,532][qinco.utils][INFO] - Optimizing decoder
+[2026-03-26 06:04:53,687][qinco.utils][INFO] - Warmup decoder
+[2026-03-26 06:04:57,537][qinco.utils][INFO] - Done for decoder
+[2026-03-26 06:04:57,538][qinco.utils][INFO] - Optimizing encoder
+[2026-03-26 06:05:02,667][qinco.utils][INFO] - Warmup encoder
+[2026-03-26 06:05:06,469][qinco.utils][INFO] - Done for encoder
+[2026-03-26 06:05:06,473][qinco.utils][INFO] - Model:
+QINCoInferenceWrapper(
+  (qinco_model): QINCo(
+    (steps): ModuleList(
+      (0): QINCoStep(
+        (codebook): Embedding(256, 128)
+      )
+      (1-7): 7 x QINCoStep(
+        (substep): QincoSubstep(
+          (codebook): Embedding(256, 128)
+        )
+        (codebook): Embedding(256, 128)
+        (concat): QConcat(
+          (mlp): Linear(in_features=512, out_features=384, bias=True)
+        )
+        (residual_blocks): Sequential(
+          (0): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (1): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (2): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (3): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (4): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (5): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (6): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (7): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (8): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (9): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (10): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (11): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (12): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (13): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (14): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (15): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+        )
+        (in_proj): Linear(in_features=128, out_features=384, bias=False)
+        (out_proj): Linear(in_features=384, out_features=128, bias=False)
+      )
+    )
+  )
+  (encoder): RecursiveScriptModule(original_name=QINCoInferenceEncoder)
+  (decoder): RecursiveScriptModule(original_name=QINCoInferenceDecoder)
+)
+[2026-03-26 06:05:06,475][qinco.utils][INFO] - ====================== RUNNING TASK eval
+[2026-03-26 06:06:00,711][qinco.utils][INFO] - Running on: local
+[2026-03-26 06:06:00,712][qinco.utils][INFO] - Running args: ['/data/wlf/Qinco-main/run.py']
+[2026-03-26 06:06:00,782][qinco.utils][INFO] - 8 GPU(s) available
+[2026-03-26 06:06:00,782][qinco.utils][INFO] - Will use device [cuda] on main process (with 1 processes)
+[2026-03-26 06:06:00,925][qinco.utils][INFO] - Device 0: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:06:01,057][qinco.utils][INFO] - Device 1: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:06:01,180][qinco.utils][INFO] - Device 2: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:06:01,318][qinco.utils][INFO] - Device 3: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:06:01,442][qinco.utils][INFO] - Device 4: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:06:01,568][qinco.utils][INFO] - Device 5: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:06:01,695][qinco.utils][INFO] - Device 6: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:06:01,823][qinco.utils][INFO] - Device 7: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:06:01,824][qinco.utils][INFO] - Load model checkpoint from models/qinco2_L-bigann1M-8x8.pt
+[2026-03-26 06:06:01,992][qinco.utils][INFO] - Configuration:
+{'task': 'eval', 'cpu': False, 'inference': True, 'verbose': True, 'resume': False, 'M': 8, 'K': 256, 'L': 16, 'de': 384, 'dh': 384, 'A': 16, 'B': 32, 'ivf_K': 1048576, 'optimizer': 'adamw', 'lr': 0.0008, 'wd': 0.1, 'grad_clip': 0.1, 'batch': 1024, 'epochs': 60, 'grad_accumulate': 1, 'output': None, 'model': 'models/qinco2_L-bigann1M-8x8.pt', 'tensorboard': None, 'ivf_centroids': None, 'index': None, 'encoded_db': None, 'encoded_trainset': None, 'pairwise_decoder': None, 'db': 'data/bigann/bigann_base.bvecs', 'trainset': 'data/bigann/bigann_learn.bvecs', 'queries': 'data/bigann/bigann_query.bvecs', 'queries_gt': 'data/bigann/gnd/idx_1M.ivecs', 'ds': {'trainset': None, 'valset': 10000, 'db': 1000000, 'loop': 10000000}, 'encode_trainset': False, 'n_pairwise_codebooks': 2, 'env': {'PYTORCH_CUDA_ALLOC_CONF': 'expandable_segments:True', 'PYTORCH_JIT': '1'}, 'seed': 0, 'qinco1_mode': None, 'codebook_noise_init': 0.1, 'enc_max_bs': 65536, 'ivf_in_use': None, 'mse_scale': 0.0001, 'scheduler': {'name': 'cosine', 'ramp_epochs': 3, 'lr_min_fact': 0.001, 'stop_patience': 10}, 'search': {'index_key': 'IVF${ivf_K}_HNSW32,RQ${M}x8_Nqint8', 'aq_training_samples': 1000000, 'nthreads': 32, 'batch_size': 12288, 'nshort': [4, 10], 'nprobe': [4], 'quantizer_efSearch': [4], 'nmid_short': [1, 4]}, 'model_args': {'L': 16, 'de': 384, 'dh': 384, 'A': 16, 'B': 32, 'M': 8, 'K': 256, 'ivf_K': 1048576}}
+[2026-03-26 06:06:01,993][qinco.utils][INFO] - Loading database from data/bigann/bigann_base.bvecs
+[2026-03-26 06:06:01,994][qinco.utils][INFO] - Max size of the database: 1000000
+[2026-03-26 06:06:01,994][qinco.utils][INFO] - Got memory-mapped dataset of size 1000000
+[2026-03-26 06:06:01,995][qinco.utils][INFO] - Test set: (1000000, 128)
+[2026-03-26 06:06:02,529][qinco.utils][INFO] - Optimizing decoder
+[2026-03-26 06:06:07,681][qinco.utils][INFO] - Warmup decoder
+[2026-03-26 06:06:11,533][qinco.utils][INFO] - Done for decoder
+[2026-03-26 06:06:11,533][qinco.utils][INFO] - Optimizing encoder
+[2026-03-26 06:06:16,641][qinco.utils][INFO] - Warmup encoder
+[2026-03-26 06:06:20,521][qinco.utils][INFO] - Done for encoder
+[2026-03-26 06:06:20,525][qinco.utils][INFO] - Model:
+QINCoInferenceWrapper(
+  (qinco_model): QINCo(
+    (steps): ModuleList(
+      (0): QINCoStep(
+        (codebook): Embedding(256, 128)
+      )
+      (1-7): 7 x QINCoStep(
+        (substep): QincoSubstep(
+          (codebook): Embedding(256, 128)
+        )
+        (codebook): Embedding(256, 128)
+        (concat): QConcat(
+          (mlp): Linear(in_features=512, out_features=384, bias=True)
+        )
+        (residual_blocks): Sequential(
+          (0): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (1): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (2): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (3): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (4): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (5): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (6): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (7): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (8): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (9): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (10): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (11): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (12): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (13): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (14): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (15): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+        )
+        (in_proj): Linear(in_features=128, out_features=384, bias=False)
+        (out_proj): Linear(in_features=384, out_features=128, bias=False)
+      )
+    )
+  )
+  (encoder): RecursiveScriptModule(original_name=QINCoInferenceEncoder)
+  (decoder): RecursiveScriptModule(original_name=QINCoInferenceDecoder)
+)
+[2026-03-26 06:06:20,526][qinco.utils][INFO] - ====================== RUNNING TASK eval
+[2026-03-26 06:07:09,550][qinco.utils][INFO] - Running on: local
+[2026-03-26 06:07:09,551][qinco.utils][INFO] - Running args: ['/data/wlf/Qinco-main/run.py']
+[2026-03-26 06:07:09,620][qinco.utils][INFO] - 8 GPU(s) available
+[2026-03-26 06:07:09,620][qinco.utils][INFO] - Will use device [cuda] on main process (with 1 processes)
+[2026-03-26 06:07:09,767][qinco.utils][INFO] - Device 0: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:07:09,886][qinco.utils][INFO] - Device 1: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:07:10,007][qinco.utils][INFO] - Device 2: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:07:10,136][qinco.utils][INFO] - Device 3: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:07:10,259][qinco.utils][INFO] - Device 4: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:07:10,383][qinco.utils][INFO] - Device 5: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:07:10,514][qinco.utils][INFO] - Device 6: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:07:10,641][qinco.utils][INFO] - Device 7: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:07:10,642][qinco.utils][INFO] - Load model checkpoint from models/qinco2_L-bigann1M-8x8.pt
+[2026-03-26 06:07:10,824][qinco.utils][INFO] - Configuration:
+{'task': 'eval', 'cpu': False, 'inference': True, 'verbose': True, 'resume': False, 'M': 8, 'K': 256, 'L': 16, 'de': 384, 'dh': 384, 'A': 16, 'B': 32, 'ivf_K': 1048576, 'optimizer': 'adamw', 'lr': 0.0008, 'wd': 0.1, 'grad_clip': 0.1, 'batch': 1024, 'epochs': 60, 'grad_accumulate': 1, 'output': None, 'model': 'models/qinco2_L-bigann1M-8x8.pt', 'tensorboard': None, 'ivf_centroids': None, 'index': None, 'encoded_db': None, 'encoded_trainset': None, 'pairwise_decoder': None, 'db': 'data/bigann/bigann_base.bvecs', 'trainset': 'data/bigann/bigann_learn.bvecs', 'queries': 'data/bigann/bigann_query.bvecs', 'queries_gt': 'data/bigann/gnd/idx_1M.ivecs', 'ds': {'trainset': None, 'valset': 10000, 'db': 1000000, 'loop': 10000000}, 'encode_trainset': False, 'n_pairwise_codebooks': 2, 'env': {'PYTORCH_CUDA_ALLOC_CONF': 'expandable_segments:True', 'PYTORCH_JIT': '1'}, 'seed': 0, 'qinco1_mode': None, 'codebook_noise_init': 0.1, 'enc_max_bs': 65536, 'ivf_in_use': None, 'mse_scale': 0.0001, 'scheduler': {'name': 'cosine', 'ramp_epochs': 3, 'lr_min_fact': 0.001, 'stop_patience': 10}, 'search': {'index_key': 'IVF${ivf_K}_HNSW32,RQ${M}x8_Nqint8', 'aq_training_samples': 1000000, 'nthreads': 32, 'batch_size': 12288, 'nshort': [4, 10], 'nprobe': [4], 'quantizer_efSearch': [4], 'nmid_short': [1, 4]}, 'model_args': {'L': 16, 'de': 384, 'dh': 384, 'A': 16, 'B': 32, 'M': 8, 'K': 256, 'ivf_K': 1048576}}
+[2026-03-26 06:07:10,824][qinco.utils][INFO] - Loading database from data/bigann/bigann_base.bvecs
+[2026-03-26 06:07:10,825][qinco.utils][INFO] - Max size of the database: 1000000
+[2026-03-26 06:07:10,826][qinco.utils][INFO] - Got memory-mapped dataset of size 1000000
+[2026-03-26 06:07:10,827][qinco.utils][INFO] - Test set: (1000000, 128)
+[2026-03-26 06:07:11,362][qinco.utils][INFO] - Optimizing decoder
+[2026-03-26 06:07:16,342][qinco.utils][INFO] - Warmup decoder
+[2026-03-26 06:07:19,948][qinco.utils][INFO] - Done for decoder
+[2026-03-26 06:07:19,948][qinco.utils][INFO] - Optimizing encoder
+[2026-03-26 06:07:24,924][qinco.utils][INFO] - Warmup encoder
+[2026-03-26 06:07:28,519][qinco.utils][INFO] - Done for encoder
+[2026-03-26 06:07:28,524][qinco.utils][INFO] - Model:
+QINCoInferenceWrapper(
+  (qinco_model): QINCo(
+    (steps): ModuleList(
+      (0): QINCoStep(
+        (codebook): Embedding(256, 128)
+      )
+      (1-7): 7 x QINCoStep(
+        (substep): QincoSubstep(
+          (codebook): Embedding(256, 128)
+        )
+        (codebook): Embedding(256, 128)
+        (concat): QConcat(
+          (mlp): Linear(in_features=512, out_features=384, bias=True)
+        )
+        (residual_blocks): Sequential(
+          (0): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (1): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (2): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (3): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (4): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (5): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (6): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (7): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (8): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (9): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (10): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (11): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (12): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (13): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (14): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (15): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+        )
+        (in_proj): Linear(in_features=128, out_features=384, bias=False)
+        (out_proj): Linear(in_features=384, out_features=128, bias=False)
+      )
+    )
+  )
+  (encoder): RecursiveScriptModule(original_name=QINCoInferenceEncoder)
+  (decoder): RecursiveScriptModule(original_name=QINCoInferenceDecoder)
+)
+[2026-03-26 06:07:28,525][qinco.utils][INFO] - ====================== RUNNING TASK eval
+[2026-03-26 06:20:00,105][qinco.utils][INFO] - Running on: local
+[2026-03-26 06:20:00,105][qinco.utils][INFO] - Running args: ['/data/wlf/Qinco-main/run.py']
+[2026-03-26 06:20:00,174][qinco.utils][INFO] - 8 GPU(s) available
+[2026-03-26 06:20:00,174][qinco.utils][INFO] - Will use device [cuda] on main process (with 1 processes)
+[2026-03-26 06:20:00,315][qinco.utils][INFO] - Device 0: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:20:00,446][qinco.utils][INFO] - Device 1: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:20:00,570][qinco.utils][INFO] - Device 2: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:20:00,710][qinco.utils][INFO] - Device 3: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:20:00,840][qinco.utils][INFO] - Device 4: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:20:00,965][qinco.utils][INFO] - Device 5: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:20:01,093][qinco.utils][INFO] - Device 6: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:20:01,228][qinco.utils][INFO] - Device 7: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:20:01,229][qinco.utils][INFO] - Load model checkpoint from models/qinco2_L-bigann1M-8x8.pt
+[2026-03-26 06:20:01,407][qinco.utils][INFO] - Configuration:
+{'task': 'eval', 'cpu': False, 'inference': True, 'verbose': True, 'resume': False, 'M': 8, 'K': 256, 'L': 16, 'de': 384, 'dh': 384, 'A': 16, 'B': 32, 'ivf_K': 1048576, 'optimizer': 'adamw', 'lr': 0.0008, 'wd': 0.1, 'grad_clip': 0.1, 'batch': 1024, 'epochs': 60, 'grad_accumulate': 1, 'output': None, 'model': 'models/qinco2_L-bigann1M-8x8.pt', 'tensorboard': None, 'ivf_centroids': None, 'index': None, 'encoded_db': None, 'encoded_trainset': None, 'pairwise_decoder': None, 'db': 'data/bigann/bigann_base.bvecs', 'trainset': 'data/bigann/bigann_learn.bvecs', 'queries': 'data/bigann/bigann_query.bvecs', 'queries_gt': 'data/bigann/gnd/idx_1M.ivecs', 'ds': {'trainset': None, 'valset': 10000, 'db': 1000000, 'loop': 10000000}, 'encode_trainset': False, 'n_pairwise_codebooks': 2, 'env': {'PYTORCH_CUDA_ALLOC_CONF': 'expandable_segments:True', 'PYTORCH_JIT': '1'}, 'seed': 0, 'qinco1_mode': None, 'codebook_noise_init': 0.1, 'enc_max_bs': 65536, 'ivf_in_use': None, 'mse_scale': 0.0001, 'scheduler': {'name': 'cosine', 'ramp_epochs': 3, 'lr_min_fact': 0.001, 'stop_patience': 10}, 'search': {'index_key': 'IVF${ivf_K}_HNSW32,RQ${M}x8_Nqint8', 'aq_training_samples': 1000000, 'nthreads': 32, 'batch_size': 12288, 'nshort': [4, 10], 'nprobe': [4], 'quantizer_efSearch': [4], 'nmid_short': [1, 4]}, 'model_args': {'L': 16, 'de': 384, 'dh': 384, 'A': 16, 'B': 32, 'M': 8, 'K': 256, 'ivf_K': 1048576}}
+[2026-03-26 06:20:01,408][qinco.utils][INFO] - Loading database from data/bigann/bigann_base.bvecs
+[2026-03-26 06:20:01,409][qinco.utils][INFO] - Max size of the database: 1000000
+[2026-03-26 06:20:01,409][qinco.utils][INFO] - Got memory-mapped dataset of size 1000000
+[2026-03-26 06:20:01,411][qinco.utils][INFO] - Test set: (1000000, 128)
+[2026-03-26 06:20:01,944][qinco.utils][INFO] - Optimizing decoder
+[2026-03-26 06:20:07,085][qinco.utils][INFO] - Warmup decoder
+[2026-03-26 06:20:10,911][qinco.utils][INFO] - Done for decoder
+[2026-03-26 06:20:10,912][qinco.utils][INFO] - Optimizing encoder
+[2026-03-26 06:20:16,017][qinco.utils][INFO] - Warmup encoder
+[2026-03-26 06:20:19,825][qinco.utils][INFO] - Done for encoder
+[2026-03-26 06:20:19,831][qinco.utils][INFO] - Model:
+QINCoInferenceWrapper(
+  (qinco_model): QINCo(
+    (steps): ModuleList(
+      (0): QINCoStep(
+        (codebook): Embedding(256, 128)
+      )
+      (1-7): 7 x QINCoStep(
+        (substep): QincoSubstep(
+          (codebook): Embedding(256, 128)
+        )
+        (codebook): Embedding(256, 128)
+        (concat): QConcat(
+          (mlp): Linear(in_features=512, out_features=384, bias=True)
+        )
+        (residual_blocks): Sequential(
+          (0): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (1): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (2): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (3): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (4): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (5): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (6): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (7): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (8): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (9): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (10): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (11): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (12): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (13): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (14): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (15): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+        )
+        (in_proj): Linear(in_features=128, out_features=384, bias=False)
+        (out_proj): Linear(in_features=384, out_features=128, bias=False)
+      )
+    )
+  )
+  (encoder): RecursiveScriptModule(original_name=QINCoInferenceEncoder)
+  (decoder): RecursiveScriptModule(original_name=QINCoInferenceDecoder)
+)
+[2026-03-26 06:20:19,832][qinco.utils][INFO] - ====================== RUNNING TASK eval
+[2026-03-26 06:38:06,983][qinco.utils][INFO] - Running on: local
+[2026-03-26 06:38:06,983][qinco.utils][INFO] - Running args: ['/data/wlf/Qinco-main/run.py']
+[2026-03-26 06:38:07,048][qinco.utils][INFO] - 8 GPU(s) available
+[2026-03-26 06:38:07,048][qinco.utils][INFO] - Will use device [cuda] on main process (with 1 processes)
+[2026-03-26 06:38:07,188][qinco.utils][INFO] - Device 0: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:38:07,309][qinco.utils][INFO] - Device 1: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:38:07,430][qinco.utils][INFO] - Device 2: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:38:07,565][qinco.utils][INFO] - Device 3: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:38:07,688][qinco.utils][INFO] - Device 4: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:38:07,813][qinco.utils][INFO] - Device 5: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:38:07,945][qinco.utils][INFO] - Device 6: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:38:08,076][qinco.utils][INFO] - Device 7: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 06:38:08,077][qinco.utils][INFO] - Load model checkpoint from models/qinco2_L-bigann1M-8x8.pt
+[2026-03-26 06:38:08,260][qinco.utils][INFO] - Configuration:
+{'task': 'eval', 'cpu': False, 'inference': True, 'verbose': True, 'resume': False, 'M': 8, 'K': 256, 'L': 16, 'de': 384, 'dh': 384, 'A': 16, 'B': 32, 'ivf_K': 1048576, 'optimizer': 'adamw', 'lr': 0.0008, 'wd': 0.1, 'grad_clip': 0.1, 'batch': 1024, 'epochs': 60, 'grad_accumulate': 1, 'output': None, 'model': 'models/qinco2_L-bigann1M-8x8.pt', 'tensorboard': None, 'ivf_centroids': None, 'index': None, 'encoded_db': None, 'encoded_trainset': None, 'pairwise_decoder': None, 'db': 'data/bigann/bigann_base.bvecs', 'trainset': 'data/bigann/bigann_learn.bvecs', 'queries': 'data/bigann/bigann_query.bvecs', 'queries_gt': 'data/bigann/gnd/idx_1M.ivecs', 'ds': {'trainset': None, 'valset': 10000, 'db': 1000000, 'loop': 10000000}, 'encode_trainset': False, 'n_pairwise_codebooks': 2, 'env': {'PYTORCH_CUDA_ALLOC_CONF': 'expandable_segments:True', 'PYTORCH_JIT': '1'}, 'seed': 0, 'qinco1_mode': None, 'codebook_noise_init': 0.1, 'enc_max_bs': 65536, 'ivf_in_use': None, 'mse_scale': 0.0001, 'scheduler': {'name': 'cosine', 'ramp_epochs': 3, 'lr_min_fact': 0.001, 'stop_patience': 10}, 'search': {'index_key': 'IVF${ivf_K}_HNSW32,RQ${M}x8_Nqint8', 'aq_training_samples': 1000000, 'nthreads': 32, 'batch_size': 12288, 'nshort': [4, 10], 'nprobe': [4], 'quantizer_efSearch': [4], 'nmid_short': [1, 4]}, 'model_args': {'L': 16, 'de': 384, 'dh': 384, 'A': 16, 'B': 32, 'M': 8, 'K': 256, 'ivf_K': 1048576}}
+[2026-03-26 06:38:08,260][qinco.utils][INFO] - Loading database from data/bigann/bigann_base.bvecs
+[2026-03-26 06:38:08,261][qinco.utils][INFO] - Max size of the database: 1000000
+[2026-03-26 06:38:08,262][qinco.utils][INFO] - Got memory-mapped dataset of size 1000000
+[2026-03-26 06:38:08,263][qinco.utils][INFO] - Test set: (1000000, 128)
+[2026-03-26 06:38:08,802][qinco.utils][INFO] - Optimizing decoder
+[2026-03-26 06:38:13,780][qinco.utils][INFO] - Warmup decoder
+[2026-03-26 06:38:17,377][qinco.utils][INFO] - Done for decoder
+[2026-03-26 06:38:17,377][qinco.utils][INFO] - Optimizing encoder
+[2026-03-26 06:38:22,386][qinco.utils][INFO] - Warmup encoder
+[2026-03-26 06:38:25,965][qinco.utils][INFO] - Done for encoder
+[2026-03-26 06:38:25,969][qinco.utils][INFO] - Model:
+QINCoInferenceWrapper(
+  (qinco_model): QINCo(
+    (steps): ModuleList(
+      (0): QINCoStep(
+        (codebook): Embedding(256, 128)
+      )
+      (1-7): 7 x QINCoStep(
+        (substep): QincoSubstep(
+          (codebook): Embedding(256, 128)
+        )
+        (codebook): Embedding(256, 128)
+        (concat): QConcat(
+          (mlp): Linear(in_features=512, out_features=384, bias=True)
+        )
+        (residual_blocks): Sequential(
+          (0): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (1): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (2): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (3): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (4): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (5): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (6): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (7): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (8): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (9): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (10): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (11): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (12): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (13): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (14): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+          (15): QBlockFFN(
+            (up_proj): Linear(in_features=384, out_features=384, bias=False)
+            (act): ReLU()
+            (down_proj): Linear(in_features=384, out_features=384, bias=False)
+          )
+        )
+        (in_proj): Linear(in_features=128, out_features=384, bias=False)
+        (out_proj): Linear(in_features=384, out_features=128, bias=False)
+      )
+    )
+  )
+  (encoder): RecursiveScriptModule(original_name=QINCoInferenceEncoder)
+  (decoder): RecursiveScriptModule(original_name=QINCoInferenceDecoder)
+)
+[2026-03-26 06:38:25,970][qinco.utils][INFO] - ====================== RUNNING TASK eval
+[2026-03-26 06:39:27,618][qinco.utils][INFO] - Warm-start with 10 batches: done
+[2026-03-26 07:00:48,014][qinco.utils][INFO] - Running on: local
+[2026-03-26 07:00:48,015][qinco.utils][INFO] - Running args: ['/data/wlf/Qinco-main/run.py']
+[2026-03-26 07:00:48,088][qinco.utils][INFO] - 8 GPU(s) available
+[2026-03-26 07:00:48,088][qinco.utils][INFO] - Will use device [cuda] on main process (with 1 processes)
+[2026-03-26 07:00:48,226][qinco.utils][INFO] - Device 0: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:00:48,347][qinco.utils][INFO] - Device 1: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:00:48,469][qinco.utils][INFO] - Device 2: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:00:48,603][qinco.utils][INFO] - Device 3: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:00:48,730][qinco.utils][INFO] - Device 4: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:00:48,855][qinco.utils][INFO] - Device 5: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:00:48,982][qinco.utils][INFO] - Device 6: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:00:49,109][qinco.utils][INFO] - Device 7: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:00:49,110][qinco.utils][INFO] - Resuming training from models/qinco2_L-bigann1M-8x8.pt
+[2026-03-26 07:00:49,110][qinco.utils][INFO] - Load model checkpoint from models/qinco2_L-bigann1M-8x8.pt
+[2026-03-26 07:02:04,171][qinco.utils][INFO] - Running on: local
+[2026-03-26 07:02:04,172][qinco.utils][INFO] - Running args: ['/data/wlf/Qinco-main/run.py']
+[2026-03-26 07:02:04,245][qinco.utils][INFO] - 8 GPU(s) available
+[2026-03-26 07:02:04,245][qinco.utils][INFO] - Will use device [cuda] on main process (with 1 processes)
+[2026-03-26 07:02:04,383][qinco.utils][INFO] - Device 0: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:02:04,504][qinco.utils][INFO] - Device 1: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:02:04,629][qinco.utils][INFO] - Device 2: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:02:04,761][qinco.utils][INFO] - Device 3: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:02:04,883][qinco.utils][INFO] - Device 4: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:02:05,012][qinco.utils][INFO] - Device 5: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:02:05,138][qinco.utils][INFO] - Device 6: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:02:05,266][qinco.utils][INFO] - Device 7: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:03:35,526][qinco.utils][INFO] - Running on: local
+[2026-03-26 07:03:35,527][qinco.utils][INFO] - Running args: ['/data/wlf/Qinco-main/run.py']
+[2026-03-26 07:03:35,599][qinco.utils][INFO] - 8 GPU(s) available
+[2026-03-26 07:03:35,600][qinco.utils][INFO] - Will use device [cuda] on main process (with 1 processes)
+[2026-03-26 07:03:35,744][qinco.utils][INFO] - Device 0: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:03:35,873][qinco.utils][INFO] - Device 1: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:03:35,997][qinco.utils][INFO] - Device 2: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:03:36,135][qinco.utils][INFO] - Device 3: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:03:36,264][qinco.utils][INFO] - Device 4: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:03:36,391][qinco.utils][INFO] - Device 5: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:03:36,521][qinco.utils][INFO] - Device 6: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:03:36,683][qinco.utils][INFO] - Device 7: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:06:03,942][qinco.utils][INFO] - Running on: local
+[2026-03-26 07:06:03,943][qinco.utils][INFO] - Running args: ['/data/wlf/Qinco-main/run.py']
+[2026-03-26 07:06:04,013][qinco.utils][INFO] - 8 GPU(s) available
+[2026-03-26 07:06:04,014][qinco.utils][INFO] - Will use device [cuda] on main process (with 1 processes)
+[2026-03-26 07:06:04,164][qinco.utils][INFO] - Device 0: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:06:04,294][qinco.utils][INFO] - Device 1: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:06:04,422][qinco.utils][INFO] - Device 2: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:06:04,560][qinco.utils][INFO] - Device 3: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:06:04,689][qinco.utils][INFO] - Device 4: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:06:04,822][qinco.utils][INFO] - Device 5: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:06:04,956][qinco.utils][INFO] - Device 6: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:06:05,085][qinco.utils][INFO] - Device 7: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:06:52,323][qinco.utils][INFO] - Running on: local
+[2026-03-26 07:06:52,325][qinco.utils][INFO] - Running args: ['/data/wlf/Qinco-main/run.py']
+[2026-03-26 07:06:52,399][qinco.utils][INFO] - 8 GPU(s) available
+[2026-03-26 07:06:52,399][qinco.utils][INFO] - Will use device [cuda] on main process (with 1 processes)
+[2026-03-26 07:06:52,552][qinco.utils][INFO] - Device 0: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:06:52,683][qinco.utils][INFO] - Device 1: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:06:52,815][qinco.utils][INFO] - Device 2: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:06:52,972][qinco.utils][INFO] - Device 3: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:06:53,097][qinco.utils][INFO] - Device 4: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:06:53,225][qinco.utils][INFO] - Device 5: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:06:53,359][qinco.utils][INFO] - Device 6: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:06:53,494][qinco.utils][INFO] - Device 7: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:08:50,446][qinco.utils][INFO] - Running on: local
+[2026-03-26 07:08:50,447][qinco.utils][INFO] - Running args: ['/data/wlf/Qinco-main/run.py']
+[2026-03-26 07:08:50,522][qinco.utils][INFO] - 8 GPU(s) available
+[2026-03-26 07:08:50,523][qinco.utils][INFO] - Will use device [cuda] on main process (with 1 processes)
+[2026-03-26 07:08:50,670][qinco.utils][INFO] - Device 0: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:08:50,793][qinco.utils][INFO] - Device 1: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:08:50,915][qinco.utils][INFO] - Device 2: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:08:51,058][qinco.utils][INFO] - Device 3: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:08:51,187][qinco.utils][INFO] - Device 4: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:08:51,313][qinco.utils][INFO] - Device 5: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:08:51,440][qinco.utils][INFO] - Device 6: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:08:51,569][qinco.utils][INFO] - Device 7: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:12:51,350][qinco.utils][INFO] - Running on: local
+[2026-03-26 07:12:51,351][qinco.utils][INFO] - Running args: ['/data/wlf/Qinco-main/run.py']
+[2026-03-26 07:12:51,419][qinco.utils][INFO] - 8 GPU(s) available
+[2026-03-26 07:12:51,419][qinco.utils][INFO] - Will use device [cuda] on main process (with 1 processes)
+[2026-03-26 07:12:51,560][qinco.utils][INFO] - Device 0: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:12:51,688][qinco.utils][INFO] - Device 1: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:12:51,812][qinco.utils][INFO] - Device 2: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:12:51,956][qinco.utils][INFO] - Device 3: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:12:52,082][qinco.utils][INFO] - Device 4: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:12:52,210][qinco.utils][INFO] - Device 5: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:12:52,344][qinco.utils][INFO] - Device 6: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:12:52,472][qinco.utils][INFO] - Device 7: 0.39 / 47.37 GB used (46.99 GB free) | allocated=0.00 GB over reserved=0.00 GB | total_free=46.99 GB [NVIDIA GeForce RTX 4090]
+[2026-03-26 07:12:52,476][qinco.utils][INFO] - Configuration:
+{'task': 'train', 'cpu': False, 'inference': True, 'verbose': True, 'resume': False, 'M': 8, 'K': 256, 'L': 16, 'de': 384, 'dh': 384, 'A': 16, 'B': 32, 'ivf_K': None, 'optimizer': 'adamw', 'lr': 0.0008, 'wd': 0.1, 'grad_clip': 0.1, 'batch': 1024, 'epochs': 60, 'grad_accumulate': 1, 'output': 'results/qinco2_L_test.pt', 'model': None, 'tensorboard': None, 'ivf_centroids': None, 'index': None, 'encoded_db': None, 'encoded_trainset': None, 'pairwise_decoder': None, 'db': 'data/bigann/bigann_base.bvecs', 'trainset': 'data/bigann/bigann_learn.bvecs', 'queries': 'data/bigann/bigann_query.bvecs', 'queries_gt': 'data/bigann/gnd/idx_1M.ivecs', 'ds': {'trainset': None, 'valset': 10000, 'db': 1000000, 'loop': 10000000}, 'encode_trainset': False, 'n_pairwise_codebooks': 2, 'env': {'PYTORCH_CUDA_ALLOC_CONF': 'expandable_segments:True', 'PYTORCH_JIT': '1'}, 'seed': 0, 'qinco1_mode': None, 'codebook_noise_init': 0.1, 'enc_max_bs': 65536, 'ivf_in_use': None, 'mse_scale': 0.0001, 'scheduler': {'name': 'cosine', 'ramp_epochs': 3, 'lr_min_fact': 0.001, 'stop_patience': 10}, 'search': {'index_key': 'IVF${ivf_K}_HNSW32,RQ${M}x8_Nqint8', 'aq_training_samples': 1000000, 'nthreads': 32, 'batch_size': 12288, 'nshort': [4, 10], 'nprobe': [4], 'quantizer_efSearch': [4], 'nmid_short': [1, 4]}, 'model_args': {'L': 16, 'de': 384, 'dh': 384, 'A': 16, 'B': 32, 'M': 8, 'K': 256, 'ivf_K': 1048576}}
+[2026-03-26 07:12:52,476][qinco.utils][INFO] - Loading training data from data/bigann/bigann_learn.bvecs
+[2026-03-26 07:12:52,477][qinco.utils][INFO] - Max size of the training + val dataset: 10010000
+[2026-03-26 07:12:52,478][qinco.utils][INFO] - Split into 10000000 training vectors and 10000 validation vectors
+[2026-03-26 07:12:52,478][qinco.utils][INFO] - Got memory-mapped dataset of size 10000000
+[2026-03-26 07:12:52,479][qinco.utils][INFO] - Got memory-mapped dataset of size 10000
+[2026-03-26 07:12:52,479][qinco.utils][INFO] - Training set: (10000000, 128)
+[2026-03-26 07:12:52,480][qinco.utils][INFO] - Validation set: (10000, 128)
+[2026-03-26 07:12:52,480][qinco.utils][INFO] - Computing mean and variance on training data...
+[2026-03-26 07:12:52,546][qinco.utils][INFO] - Mean of 26 and variance of 37
+[2026-03-26 07:12:53,412][qinco.utils][INFO] - ====================== residual quantizer training
+[2026-03-26 07:12:57,620][qinco.utils][INFO] - Loading data took 00:00:04
+[2026-03-26 07:12:57,621][qinco.utils][INFO] - Train on data of shape torch.Size([999424, 128]) (and torch.Size([999424, 128]) before mapping)
+[2026-03-26 07:12:57,621][qinco.utils][INFO] - RQ applied with 128 features
+[2026-03-26 07:12:57,621][qinco.utils][INFO] - training RQ 256
+[2026-03-26 07:12:57,628][qinco.utils][INFO] - TorchRQ - training stage 0
+[2026-03-26 07:12:59,506][qinco.utils][INFO] - TorchRQ - training stage 1
+[2026-03-26 07:13:00,984][qinco.utils][INFO] - TorchRQ - training stage 2
+[2026-03-26 07:13:02,424][qinco.utils][INFO] - TorchRQ - training stage 3
+[2026-03-26 07:13:03,880][qinco.utils][INFO] - TorchRQ - training stage 4
+[2026-03-26 07:13:05,335][qinco.utils][INFO] - TorchRQ - training stage 5
+[2026-03-26 07:13:06,774][qinco.utils][INFO] - TorchRQ - training stage 6
+[2026-03-26 07:13:08,219][qinco.utils][INFO] - TorchRQ - training stage 7
+[2026-03-26 07:13:10,782][qinco.utils][INFO] - Training & decoding took 00:00:13
+[2026-03-26 07:13:10,944][qinco.utils][INFO] - train set MSE=2.49029 validation MSE=2.49865 (avg=0.0195207)
+[2026-03-26 07:13:10,945][qinco.utils][INFO] - RQ centroids size [(256, 128), (256, 128), (256, 128), (256, 128), (256, 128), (256, 128), (256, 128), (256, 128)]
+[2026-03-26 07:13:14,563][qinco.utils][INFO] - Model:
+QINCo(
+  (steps): ModuleList(
+    (0): QINCoStep(
+      (codebook): Embedding(256, 128)
+    )
+    (1-7): 7 x QINCoStep(
+      (substep): QincoSubstep(
+        (codebook): Embedding(256, 128)
+      )
+      (codebook): Embedding(256, 128)
+      (concat): RecursiveScriptModule(
+        original_name=QConcat
+        (mlp): RecursiveScriptModule(original_name=Linear)
+      )
+      (residual_blocks): RecursiveScriptModule(
+        original_name=Sequential
+        (0): RecursiveScriptModule(
+          original_name=QBlockFFN
+          (up_proj): RecursiveScriptModule(original_name=Linear)
+          (act): RecursiveScriptModule(original_name=ReLU)
+          (down_proj): RecursiveScriptModule(original_name=Linear)
+        )
+        (1): RecursiveScriptModule(
+          original_name=QBlockFFN
+          (up_proj): RecursiveScriptModule(original_name=Linear)
+          (act): RecursiveScriptModule(original_name=ReLU)
+          (down_proj): RecursiveScriptModule(original_name=Linear)
+        )
+        (2): RecursiveScriptModule(
+          original_name=QBlockFFN
+          (up_proj): RecursiveScriptModule(original_name=Linear)
+          (act): RecursiveScriptModule(original_name=ReLU)
+          (down_proj): RecursiveScriptModule(original_name=Linear)
+        )
+        (3): RecursiveScriptModule(
+          original_name=QBlockFFN
+          (up_proj): RecursiveScriptModule(original_name=Linear)
+          (act): RecursiveScriptModule(original_name=ReLU)
+          (down_proj): RecursiveScriptModule(original_name=Linear)
+        )
+        (4): RecursiveScriptModule(
+          original_name=QBlockFFN
+          (up_proj): RecursiveScriptModule(original_name=Linear)
+          (act): RecursiveScriptModule(original_name=ReLU)
+          (down_proj): RecursiveScriptModule(original_name=Linear)
+        )
+        (5): RecursiveScriptModule(
+          original_name=QBlockFFN
+          (up_proj): RecursiveScriptModule(original_name=Linear)
+          (act): RecursiveScriptModule(original_name=ReLU)
+          (down_proj): RecursiveScriptModule(original_name=Linear)
+        )
+        (6): RecursiveScriptModule(
+          original_name=QBlockFFN
+          (up_proj): RecursiveScriptModule(original_name=Linear)
+          (act): RecursiveScriptModule(original_name=ReLU)
+          (down_proj): RecursiveScriptModule(original_name=Linear)
+        )
+        (7): RecursiveScriptModule(
+          original_name=QBlockFFN
+          (up_proj): RecursiveScriptModule(original_name=Linear)
+          (act): RecursiveScriptModule(original_name=ReLU)
+          (down_proj): RecursiveScriptModule(original_name=Linear)
+        )
+        (8): RecursiveScriptModule(
+          original_name=QBlockFFN
+          (up_proj): RecursiveScriptModule(original_name=Linear)
+          (act): RecursiveScriptModule(original_name=ReLU)
+          (down_proj): RecursiveScriptModule(original_name=Linear)
+        )
+        (9): RecursiveScriptModule(
+          original_name=QBlockFFN
+          (up_proj): RecursiveScriptModule(original_name=Linear)
+          (act): RecursiveScriptModule(original_name=ReLU)
+          (down_proj): RecursiveScriptModule(original_name=Linear)
+        )
+        (10): RecursiveScriptModule(
+          original_name=QBlockFFN
+          (up_proj): RecursiveScriptModule(original_name=Linear)
+          (act): RecursiveScriptModule(original_name=ReLU)
+          (down_proj): RecursiveScriptModule(original_name=Linear)
+        )
+        (11): RecursiveScriptModule(
+          original_name=QBlockFFN
+          (up_proj): RecursiveScriptModule(original_name=Linear)
+          (act): RecursiveScriptModule(original_name=ReLU)
+          (down_proj): RecursiveScriptModule(original_name=Linear)
+        )
+        (12): RecursiveScriptModule(
+          original_name=QBlockFFN
+          (up_proj): RecursiveScriptModule(original_name=Linear)
+          (act): RecursiveScriptModule(original_name=ReLU)
+          (down_proj): RecursiveScriptModule(original_name=Linear)
+        )
+        (13): RecursiveScriptModule(
+          original_name=QBlockFFN
+          (up_proj): RecursiveScriptModule(original_name=Linear)
+          (act): RecursiveScriptModule(original_name=ReLU)
+          (down_proj): RecursiveScriptModule(original_name=Linear)
+        )
+        (14): RecursiveScriptModule(
+          original_name=QBlockFFN
+          (up_proj): RecursiveScriptModule(original_name=Linear)
+          (act): RecursiveScriptModule(original_name=ReLU)
+          (down_proj): RecursiveScriptModule(original_name=Linear)
+        )
+        (15): RecursiveScriptModule(
+          original_name=QBlockFFN
+          (up_proj): RecursiveScriptModule(original_name=Linear)
+          (act): RecursiveScriptModule(original_name=ReLU)
+          (down_proj): RecursiveScriptModule(original_name=Linear)
+        )
+      )
+      (in_proj): RecursiveScriptModule(original_name=Linear)
+      (out_proj): RecursiveScriptModule(original_name=Linear)
+    )
+  )
+)
+[2026-03-26 07:14:15,426][qinco.utils][INFO] - nb trainable parameters 35588736
+[2026-03-26 07:14:18,777][qinco.utils][INFO] - ====================== RUNNING TASK train
+[2026-03-26 07:14:59,695][qinco.utils][INFO] - Starting training
+[2026-03-26 07:14:59,696][qinco.utils][INFO] - Batch size of 1024 with 1 acumulation step(s) and 1 process(es)
+[2026-03-26 07:14:59,696][qinco.utils][INFO] - Effective batch size: 1024
+[2026-03-26 07:14:59,697][qinco.utils][INFO] - Will start with a learning rate of 0.0008 controlled by the scheduler cosine
+[2026-03-26 07:15:02,815][qinco.utils][INFO] - optimizer AdamW (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    decoupled_weight_decay: True
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    initial_lr: 0.0008
+    lr: 6.400000000000001e-10
+    maximize: False
+    weight_decay: 0.1
+) and scheduler <qinco.model.scheduler.RampCosineLRSchedule object at 0x75fb62141210>
+[2026-03-26 07:20:45,218][qinco.utils][INFO] - Validation metrics: [[MSE=8.72412]]
+[2026-03-26 07:20:57,041][qinco.utils][INFO] - val_codeword_entropy=7.06174 (min=4.49572)
+[2026-03-26 07:24:16,813][qinco.utils][INFO] -  - 
+[2026-03-26 07:24:17,522][qinco.utils][INFO] - [T_total=00:09:17 | T_train=00:00:00] Start epoch 0 with lr=6.4e-10

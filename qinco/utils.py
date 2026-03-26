@@ -136,7 +136,7 @@ def save_model(cfg, accelerator, model: torch.nn.Module):
             str(path),
         )
 
-
+# 加载预训练模型
 def load_saved_model_data(cfg, load_qinco):
     path = cfg.model
 
@@ -157,7 +157,7 @@ def load_saved_model_data(cfg, load_qinco):
             cfg._accelerator.print(f"Resuming training from {path}")
         cfg._accelerator.print(f"Load model checkpoint from {path}")
         assert Path(path).exists(), f"Can't find path {path}"
-
+        # 加载模型权重
         state_dict = torch.load(
             str(cfg.model), map_location=torch.device("cpu"), weights_only=True
         )
@@ -236,7 +236,7 @@ def unwrap(model):
         return unwrap(model.module)
     return model
 
-
+# 继承自 Accelerator，提供了一些额外的功能
 class QAccelerator(Accelerator):
     h_log = logging.getLogger(__name__)
 

@@ -281,7 +281,7 @@ class MetricLogger:
         self.train_set_size = len(train_set)
         self.timers.epoch.start(reset=True)
         self.timers.train.start()
-
+        # 记录学习率变化的时间点
         if abs(lr - self.last_lr) > 1e-9:
             self.last_lr = lr
             self.last_lr_change = self.cur_step
